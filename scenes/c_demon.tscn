@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://jcgt3aqx5qpy"]
+
+[ext_resource type="Texture2D" uid="uid://drj28jerd8kg4" path="res://assets/Vengeful_Imp_Model.png" id="1_kaxof"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7km31"]
+radius = 112.231
+height = 417.91
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(-1, 6)
+rotation = -2.66686
+scale = Vector2(0.342536, 0.342536)
+shape = SubResource("CapsuleShape2D_7km31")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(14, 17)
+scale = Vector2(0.342536, 0.342536)
+texture = ExtResource("1_kaxof")
