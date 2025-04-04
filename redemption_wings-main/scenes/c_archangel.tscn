@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://45t4x4s8w8m4"]
+
+[ext_resource type="Texture2D" uid="uid://or52ky80b72i" path="res://assets/Arcanjo_caido.webp" id="1_5cus2"]
+[ext_resource type="Script" uid="uid://drnomfoutq11f" path="res://scenes/c_archangel.gd" id="1_w0vip"]
+[ext_resource type="PackedScene" uid="uid://djvh1mfowahlh" path="res://scenes/at_basic.tscn" id="2_76tq6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w0vip"]
+radius = 445.01
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_w0vip")
+at_basic = ExtResource("2_76tq6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-361, -172)
+texture = ExtResource("1_5cus2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(-418, -159)
+shape = SubResource("CircleShape2D_w0vip")
