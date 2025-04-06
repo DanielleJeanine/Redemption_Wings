@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccn051pu6kw77"]
+[gd_scene load_steps=7 format=3 uid="uid://ccn051pu6kw77"]
 
 [ext_resource type="Script" uid="uid://dleyxr0nh056c" path="res://scenes/game.gd" id="1_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cxiu6avrsp68p" path="res://assets/OIG4.webp" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://45t4x4s8w8m4" path="res://scenes/c_archangel.tscn" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://c5q0ab2av07xy" path="res://scenes/inimigo-movimento.gd" id="4_iywne"]
 [ext_resource type="Texture2D" uid="uid://drj28jerd8kg4" path="res://assets/Vengeful_Imp_Model.png" id="4_lbhrr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iywne"]
+size = Vector2(238.458, 302.906)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lnu2h")
@@ -24,7 +28,15 @@ enabled = false
 color = Color(1, 0.784314, 0.117647, 1)
 energy = 0.0
 
-[node name="VengefulImpModel" type="Sprite2D" parent="."]
+[node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(1205, 105)
 scale = Vector2(0.310327, 0.310327)
+script = ExtResource("4_iywne")
+
+[node name="VengefulImpModel" type="Sprite2D" parent="Enemy"]
 texture = ExtResource("4_lbhrr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(-19.334, -38.6689)
+shape = SubResource("RectangleShape2D_iywne")
+disabled = true
