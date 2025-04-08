@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://jcgt3aqx5qpy"]
+
+[ext_resource type="Script" uid="uid://6mwgf4mrviw4" path="res://scenes/c_demon.gd" id="1_7km31"]
+[ext_resource type="Texture2D" uid="uid://drj28jerd8kg4" path="res://assets/Vengeful_Imp_Model.png" id="1_kaxof"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7km31"]
+size = Vector2(280.858, 338.843)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["inimigos"]]
+collision_layer = 2
+script = ExtResource("1_7km31")
+vida = 10.0
+speed = 150.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(5.30962, 20.372)
+rotation = -2.66686
+scale = Vector2(0.342536, 0.342536)
+shape = SubResource("RectangleShape2D_7km31")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(14, 17)
+scale = Vector2(0.342536, 0.342536)
+texture = ExtResource("1_kaxof")
