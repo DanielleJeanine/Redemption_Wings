@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cse3pymi3lg7r"]
+
+[ext_resource type="Script" uid="uid://dhkdebj8h73qs" path="res://scenes/UI_scenes/orquestrador_de_cenas.gd" id="1_dy5r7"]
+[ext_resource type="PackedScene" uid="uid://ccn051pu6kw77" path="res://scenes/game.tscn" id="2_8yeii"]
+[ext_resource type="PackedScene" uid="uid://bdu0e1yeidq0y" path="res://scenes/UI_scenes/menu.tscn" id="3_clomo"]
+[ext_resource type="Theme" uid="uid://wlwx3ld526t7" path="res://assets/themes/btn_placeholder.tres" id="4_5vu3d"]
+
+[node name="OrquestradorDeCenas" type="Node"]
+script = ExtResource("1_dy5r7")
+
+[node name="Game" parent="." instance=ExtResource("2_8yeii")]
+
+[node name="MenuInicial" parent="." instance=ExtResource("3_clomo")]
+
+[node name="Play_btn" parent="MenuInicial/VBoxContainer" index="1"]
+theme = ExtResource("4_5vu3d")
+
+[node name="Exit_btn" parent="MenuInicial/VBoxContainer" index="2"]
+theme = ExtResource("4_5vu3d")
+
+[connection signal="pressed" from="MenuInicial/VBoxContainer/Play_btn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="MenuInicial/VBoxContainer/Exit_btn" to="." method="_on_exit_btn_pressed"]
+
+[editable path="Game"]
+[editable path="MenuInicial"]

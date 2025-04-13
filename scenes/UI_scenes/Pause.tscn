@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwx43r8yqu4vu"]
+
+[ext_resource type="Script" uid="uid://y1furx260ocj" path="res://scenes/UI_scenes/pause.gd" id="1_bl3e2"]
+[ext_resource type="Theme" uid="uid://wlwx3ld526t7" path="res://assets/themes/btn_placeholder.tres" id="1_ouc74"]
+
+[node name="pause" type="CanvasLayer"]
+process_mode = 3
+visible = false
+script = ExtResource("1_bl3e2")
+
+[node name="bg_overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.254902)
+
+[node name="menu_pause" type="VBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="continuar_btn" type="Button" parent="menu_pause"]
+layout_mode = 2
+theme = ExtResource("1_ouc74")
+text = "Continuar"
+
+[node name="sair_btn2" type="Button" parent="menu_pause"]
+layout_mode = 2
+theme = ExtResource("1_ouc74")
+text = "Sair da jogo"
+
+[connection signal="pressed" from="menu_pause/continuar_btn" to="." method="_on_continuar_btn_pressed"]
+[connection signal="pressed" from="menu_pause/sair_btn2" to="." method="_on_sair_btn_2_pressed"]

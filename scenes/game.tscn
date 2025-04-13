@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccn051pu6kw77"]
+[gd_scene load_steps=5 format=3 uid="uid://ccn051pu6kw77"]
 
 [ext_resource type="Script" uid="uid://dleyxr0nh056c" path="res://scenes/game.gd" id="1_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cxiu6avrsp68p" path="res://assets/OIG4.webp" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://45t4x4s8w8m4" path="res://scenes/c_archangel.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://cwx43r8yqu4vu" path="res://scenes/UI_scenes/Pause.tscn" id="4_lbhrr"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lnu2h")
@@ -15,3 +16,5 @@ texture = ExtResource("1_uwrxv")
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_yqjtg")]
 position = Vector2(134, 204)
 scale = Vector2(0.22, 0.22)
+
+[node name="Pause" parent="." instance=ExtResource("4_lbhrr")]

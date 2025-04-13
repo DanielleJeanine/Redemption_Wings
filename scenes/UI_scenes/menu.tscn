@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bdu0e1yeidq0y"]
 
-[ext_resource type="Script" uid="uid://cnmpfwxilxpdf" path="res://scenes/menu.gd" id="1_vjb58"]
+[ext_resource type="Script" uid="uid://cnmpfwxilxpdf" path="res://scenes/UI_scenes/menu.gd" id="1_vjb58"]
 [ext_resource type="Texture2D" uid="uid://mult61ufxyah" path="res://assets/menu/background_placeholder01.jpg" id="1_yqeox"]
 [ext_resource type="PackedScene" uid="uid://ccn051pu6kw77" path="res://scenes/game.tscn" id="2_con2f"]
 
@@ -92,5 +92,3 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_vjb58")
 text = "Exit"
-
-[connection signal="pressed" from="VBoxContainer/Exit_btn" to="." method="_on_exit_btn_pressed"]
