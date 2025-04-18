@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://jcgt3aqx5qpy"]
+
+[ext_resource type="Script" uid="uid://6mwgf4mrviw4" path="res://scenes/bat.gd" id="1_7km31"]
+[ext_resource type="Texture2D" uid="uid://d02jqdtgu5jtc" path="res://assets/—Pngtree—halloween bat commercial material_4055731.png" id="2_7km31"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kvnh"]
+size = Vector2(59.5178, 64.9996)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7km31"]
+size = Vector2(222.949, 240.38)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_7km31")
+vida = 10.0
+speed = 150.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10.0535, 26.9429)
+rotation = 2.28821
+shape = SubResource("RectangleShape2D_3kvnh")
+
+[node name="HitboxArea" type="Area2D" parent="." groups=["enemy_hitbox", "inimigos"]]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea"]
+z_index = 1
+position = Vector2(11, 27)
+rotation = 2.27664
+scale = Vector2(0.26919, 0.273685)
+shape = SubResource("RectangleShape2D_7km31")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(17, 24)
+scale = Vector2(0.058268, 0.058268)
+texture = ExtResource("2_7km31")

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var vida: float = 2.0  # Agora ele "morre" com 2 de dano
 @export var speed := 200
 @export var spawn_y_margin_top := 0.9  # 90% da tela
 @export var spawn_y_margin_bottom := 0.1  # 10% da tela
@@ -9,9 +10,8 @@ extends CharacterBody2D
 var spawn_timer := 0.0
 
 func _ready():
-	# Posiciona o inimigo aleatoriamente no lado direito
+	add_to_group("inimigos")  # Adiciona ao grupo de inimigos para detecção
 	calcular_posicao_spawn()
-	# Inicia o timer para o próximo spawn
 	spawn_timer = spawn_interval
 
 func _physics_process(delta):
@@ -29,6 +29,16 @@ func _physics_process(delta):
 		spawn_novo_inimigo()
 		spawn_timer = spawn_interval
 
+func levar_dano(dano: float):
+	vida -= dano
+	print("Dano recebido: ", dano, " | Vida restante: ", vida)
+	if vida <= 0:
+		morrer()
+
+func morrer():
+	print("Inimigo morreu!")
+	queue_free()
+
 func spawn_novo_inimigo():
 	var novo_inimigo = duplicate()
 	get_parent().add_child(novo_inimigo)
@@ -44,8 +54,5 @@ func calcular_posicao_spawn() -> Vector2:
 
 func out_screen() -> bool:
 	var viewport_rect = get_viewport_rect()
-	# Considera o tamanho do inimigo (usando o tamanho do retângulo de colisão)
 	var extents = $CollisionShape2D.shape.extents if has_node("CollisionShape2D") else Vector2.ZERO
-	
-	# Verifica se saiu completamente pela esquerda
 	return global_position.x + extents.x < -despawn_margin

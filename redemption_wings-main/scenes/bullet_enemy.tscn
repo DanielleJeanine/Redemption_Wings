@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqpt05p3ru2ku"]
+
+[ext_resource type="Script" uid="uid://qu2fwwa3dbdc" path="res://scenes/bullet_enemy.gd" id="1_hmyi3"]
+[ext_resource type="Texture2D" uid="uid://k8ereec8vbu6" path="res://assets/at_basic.webp" id="2_a0ysx"]
+[ext_resource type="Texture2D" uid="uid://dybu84iow7law" path="res://assets/glow_effect.png" id="3_spdxa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_axnaf"]
+radius = 15.0333
+
+[node name="Area2D" type="Area2D" groups=["projeteis"]]
+collision_layer = 8
+script = ExtResource("1_hmyi3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 4)
+scale = Vector2(0.0692257, 0.0692257)
+texture = ExtResource("2_a0ysx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 4)
+shape = SubResource("CircleShape2D_axnaf")
+
+[node name="Glow" type="PointLight2D" parent="."]
+position = Vector2(0, 10)
+color = Color(0.0910293, 0.00141225, 0.523723, 1)
+energy = 2.15
+texture = ExtResource("3_spdxa")
+texture_scale = 3.03
+height = 2.0
+
+[connection signal="area_entered" from="." to="." method="_on_hitbox_body_entered"]

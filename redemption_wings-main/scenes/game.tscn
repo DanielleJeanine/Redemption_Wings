@@ -1,25 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://ccn051pu6kw77"]
+[gd_scene load_steps=9 format=3 uid="uid://ccn051pu6kw77"]
 
 [ext_resource type="Script" uid="uid://dleyxr0nh056c" path="res://scenes/game.gd" id="1_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cxiu6avrsp68p" path="res://assets/OIG4.webp" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://jcgt3aqx5qpy" path="res://scenes/bat.tscn" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://45t4x4s8w8m4" path="res://scenes/c_archangel.tscn" id="2_yqjtg"]
-[ext_resource type="Script" uid="uid://c5q0ab2av07xy" path="res://scenes/inimigo-movimento.gd" id="4_iywne"]
-[ext_resource type="Texture2D" uid="uid://drj28jerd8kg4" path="res://assets/Vengeful_Imp_Model.png" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://mmbmv5rv0h5n" path="res://scenes/demon.tscn" id="3_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://cwsh3nwidyr7x" path="res://scenes/PlayerHUD.tscn" id="5_p57ef"]
+[ext_resource type="Script" uid="uid://be20g5krdtqje" path="res://scenes/player_hud.gd" id="6_u5sy4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iywne"]
-size = Vector2(238.458, 302.906)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p57ef"]
+radius = 340.909
+height = 681.818
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lnu2h")
+bat_scene = ExtResource("2_lbhrr")
+demon_scene = ExtResource("3_u5sy4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(640.5, 359.5)
 scale = Vector2(1.33577, 1.33643)
 texture = ExtResource("1_uwrxv")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(164, 203)
+[node name="CharacterBody2D" parent="." groups=["player"] instance=ExtResource("2_yqjtg")]
+position = Vector2(189, 389)
 scale = Vector2(0.22, 0.22)
+collision_layer = 0
+collision_mask = 0
 
 [node name="ChargeLight" type="PointLight2D" parent="CharacterBody2D"]
 position = Vector2(-609.091, -927.273)
@@ -28,15 +35,19 @@ enabled = false
 color = Color(1, 0.784314, 0.117647, 1)
 energy = 0.0
 
-[node name="Enemy" type="CharacterBody2D" parent="."]
-position = Vector2(1205, 105)
-scale = Vector2(0.310327, 0.310327)
-script = ExtResource("4_iywne")
+[node name="HitboxArea" type="Area2D" parent="CharacterBody2D" groups=["player"]]
+collision_mask = 10
 
-[node name="VengefulImpModel" type="Sprite2D" parent="Enemy"]
-texture = ExtResource("4_lbhrr")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HitboxArea"]
+position = Vector2(-395.455, -177.273)
+shape = SubResource("CapsuleShape2D_p57ef")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-position = Vector2(-19.334, -38.6689)
-shape = SubResource("RectangleShape2D_iywne")
-disabled = true
+[node name="PlayerHUD" parent="." instance=ExtResource("5_p57ef")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("6_u5sy4")
+
+[connection signal="lives_changed" from="CharacterBody2D" to="PlayerHUD" method="update_hearts"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwsh3nwidyr7x"]
+
+[ext_resource type="Texture2D" uid="uid://dk4l04cdwoeno" path="res://assets/heart.png" id="1_0kcyj"]
+
+[node name="PlayerHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.07, 0.07)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Life1" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_0kcyj")
+
+[node name="Life2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_0kcyj")
+
+[node name="Life3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_0kcyj")
