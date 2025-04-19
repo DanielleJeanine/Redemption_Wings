@@ -87,6 +87,12 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_yqeox")
 text = "Play
 "
 
+[node name="Controles_btn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_yqeox")
+text = "Controles"
+
 [node name="Exit_btn" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50

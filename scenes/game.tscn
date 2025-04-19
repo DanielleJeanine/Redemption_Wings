@@ -1,20 +1,33 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccn051pu6kw77"]
 
-[ext_resource type="Script" uid="uid://dleyxr0nh056c" path="res://scenes/game.gd" id="1_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://cxiu6avrsp68p" path="res://assets/OIG4.webp" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://45t4x4s8w8m4" path="res://scenes/c_archangel.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://cwx43r8yqu4vu" path="res://scenes/UI_scenes/Pause.tscn" id="4_lbhrr"]
 
-[node name="Game" type="Node2D"]
-script = ExtResource("1_lnu2h")
+[sub_resource type="GDScript" id="GDScript_lnu2h"]
+script/source = "extends Node2D
+"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Game" type="Node2D"]
+script = SubResource("GDScript_lnu2h")
+
+[node name="ParallaxBackground" type="Node2D" parent="."]
+
+[node name="ParallaxLayer" type="Parallax2D" parent="ParallaxBackground"]
+scroll_scale = Vector2(2, 2)
+repeat_size = Vector2(1279, 0)
+repeat_times = 2
+
+[node name="cenario" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(640.5, 359.5)
 scale = Vector2(1.33577, 1.33643)
 texture = ExtResource("1_uwrxv")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(134, 204)
+[node name="Player" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(647, 368)
 scale = Vector2(0.22, 0.22)
+at_basic = null
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Pause" parent="." instance=ExtResource("4_lbhrr")]
