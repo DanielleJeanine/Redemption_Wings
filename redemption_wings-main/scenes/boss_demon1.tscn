@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6ujxjdyml4lm"]
+
+[ext_resource type="Script" uid="uid://oj7kedtpslpq" path="res://scenes/boss_demon_1.gd" id="1_5md0u"]
+[ext_resource type="Texture2D" uid="uid://chrkrnljtlv2f" path="res://assets/BossDemon.png" id="1_a36ib"]
+[ext_resource type="PackedScene" uid="uid://bqpt05p3ru2ku" path="res://scenes/bullet_enemy.tscn" id="2_8nyfc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kvnh"]
+size = Vector2(156.616, 153.306)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7km31"]
+size = Vector2(456.738, 447.928)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(0, 90)
+scale = Vector2(1.15073, 1.15073)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_5md0u")
+basic_projectile_scene = ExtResource("2_8nyfc")
+explosive_scene = ExtResource("2_8nyfc")
+power_beam_scene = ExtResource("2_8nyfc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(24.8133, 28.9891)
+rotation = 2.19317
+shape = SubResource("RectangleShape2D_3kvnh")
+
+[node name="HitboxArea" type="Area2D" parent="." groups=["enemy_hitbox", "inimigos"]]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea"]
+z_index = 1
+position = Vector2(23.9967, 28.8998)
+rotation = 2.19244
+scale = Vector2(0.342536, 0.342536)
+shape = SubResource("RectangleShape2D_7km31")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(21, 32)
+scale = Vector2(0.215228, 0.215228)
+texture = ExtResource("1_a36ib")
